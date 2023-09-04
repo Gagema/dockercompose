@@ -6,28 +6,30 @@ services:
     build: ./dir
     image: webservice
     ports: 
-      - "3306:80"
+      - "3030:80"
     links:
-      - db
-      - app
+    - db
+    - app
   db:
     image: mysql:8.0
-    command: --default-authentication-plugin=mysql_native_password
     restart: always
+    cap_add:
+      - SYS_NICE
+    command: --default-authentication-plugin=mysql_native_password
     volumes:
       - data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=password
-      - MYSQL_DB=app_development
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=app_development 
     ports:
-      - "3030:80"
+      - "3306:80"
   app:
     image: phpmyadmin/phpmyadmin:latest
     links: 
       - db
     ports: 
-      - "3000:80"
+      - "80:80"
     environment:
       - PMA_ARBITRARY=1
   
