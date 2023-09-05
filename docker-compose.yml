@@ -18,8 +18,6 @@ services:
     volumes:
       - data:/var/lib/mysql
     environment:
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=password
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=app_development 
     ports:
@@ -29,7 +27,7 @@ services:
     links: 
       - db
     ports: 
-      - "80:80"
+      - "3036:80"
     environment:
       - PMA_ARBITRARY=1
   
