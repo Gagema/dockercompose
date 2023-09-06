@@ -1,6 +1,7 @@
 <?php
   if(isset($_POST['cadastrar'])){
     $nome=$_POST['nome'];
+    $senha=$_POST['senha'];
   }
   $host="db";
   $banco="app_development";
@@ -12,7 +13,7 @@
   if(!$con){
     die("Conexao falhou" . mysqli_connect_error() );
   }
-  $sql = "INSERT INTO Cliente(nome) VALUES('$nome')";
+  $sql = "INSERT INTO Cliente(nome, senha) VALUES('$nome','$senha')";
 
   $rs = mysqli_query($con, $sql);
   if($rs){
