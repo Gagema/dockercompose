@@ -80,7 +80,7 @@
           <br>
           <div class="input-box">
              <input type="password" name="senha" placeholder="Digite sua senha" id="senha" class="input" required>
-             <p id="message">Password is <span id="Strength"></span></p>
+             <p id="message">Senha <span id="Strength"></span></p>
           </div>
           <br/>
           <br>
@@ -95,22 +95,25 @@
       var pass = document.getElementById("senha");
       var msg = document.getElementById("message");
       var str = document.getElementById("Strength");
-      let strength=0
+      let medium= /[a-z]/;
+      let medium2= /[A-Z]/;
+      let medium3= /[0-9]/;
+      let strong=/([!,%,&,@,#,$,^,*,?,_,~])/;
       pass.addEventListener('input',()=>{
          if(pass.value.length>0){
             msg.style.display="block";
           if(pass.value.length < 4){
-            str.innerHTML="WEAK";
+            str.innerHTML="fraca";
             pass.style.borderColor="#ff5925";
             msg.style.color="#ff5925";
           }
-          if(pass.value.length >=4 && pass.value.length < 8){
-            str.innerHTML="Medium";
-            pass.style.borderColor="yellow";
-            msg.style.color="yellow";
+          if(pass.value.length >=4 && pass.value.length < 8 && pass.value.match(medium)&& pass.value.match(medium3)){
+            str.innerHTML="média";
+            pass.style.borderColor="#FFA500";
+            msg.style.color="#FFA500";
           }
-          if(pass.value.length >= 8){
-            str.innerHTML="Strong";
+          if(pass.value.length >= 8 && pass.value.match(medium)&& pass.value.match(medium3)&& pass.value.match(medium2)&& pass.value.match(strong)){
+            str.innerHTML="forte";
             pass.style.borderColor="#26d730";
             msg.style.color="#26d730";
           }
