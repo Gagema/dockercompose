@@ -1,7 +1,7 @@
 <?php
   if(isset($_POST['cadastrar'])){
     $nome=$_POST['nome'];
-    $senha=$_POST['senha'];
+    $senha=md5($_POST['senha']);
   }
   $host="db";
   $banco="app_development";
